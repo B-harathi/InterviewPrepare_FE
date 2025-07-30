@@ -1,9 +1,10 @@
 import axios from "axios";
 import { BASE_URL } from "./apiPaths";
+import { API_CONFIG } from "../config/config";
 
 const axiosInstance = axios.create({
-  baseURL: BASE_URL,
-  timeout: 80000,
+  baseURL: API_CONFIG.BASE_URL,
+  timeout: API_CONFIG.TIMEOUT,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
@@ -41,7 +42,11 @@ axiosInstance.interceptors.response.use(
         console.error(`Request timeout. Please try again.`);
       }
       return Promise.reject(error);
+    } else if (error.code === "ERR_NETWORK") {
+      console.error("Network error. Please check your connection.");
+      return Promise.reject(error);
     }
+    return Promise.reject(error);
   }
 );
 

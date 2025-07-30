@@ -52,7 +52,7 @@ const Dashboard = () => {
     const runMigration = async () => {
         try {
             setIsMigrating(true);
-            await axiosInstance.post('/api/questions/migrate');
+            await axiosInstance.post(API_PATHS.QUESTION.MIGRATE);
             toast.success("Migration completed! Questions now have YouTube links and course recommendations.");
             fetchAllSessions(); // Refresh sessions to show updated data
         } catch (error) {

@@ -1,4 +1,6 @@
-export const BASE_URL = "https://interviewprepai-2uzu.onrender.com";
+import { API_CONFIG } from "../config/config";
+
+export const BASE_URL = API_CONFIG.BASE_URL;
 
 export const API_PATHS = {
   AUTH: {
@@ -23,5 +25,6 @@ export const API_PATHS = {
     ADD_TO_SESSION: "/api/questions/add", //Add more question to a session
     PIN: (id) => `/api/questions/${id}/pin`, //Pin or Unpin a question
     UPDATE_NOTE: (id) => `/api/questions/${id}/note`, //Update/Add a note to a question
+    MIGRATE: "/api/questions/migrate", //Migrate existing questions with YouTube links
   },
 };
